@@ -1,0 +1,19 @@
+function LBPasteFromAi() {
+	var dom = fw.getDocumentDOM();
+	
+	dom.clipPaste();
+	
+	var obj = fw.selection;
+	var itemLength = obj.length;
+	dom.selectNone();
+	
+	for (var i = 0; i < itemLength; i++) {
+		if (obj[i].__proto__ == Text.prototype) {
+			fw.selection = obj[i];
+			var selectedObj = fw.selection;
+			dom.resizeSelection( obj[i].width - 9, obj[i].height );
+		}
+	}
+}
+
+LBPasteFromAi();
